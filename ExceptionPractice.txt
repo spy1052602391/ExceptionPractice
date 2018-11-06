@@ -1,0 +1,55 @@
+class MulException extends Exception{
+    public MulException(String str){
+        super(str);
+    }
+}
+
+class DivException extends RuntimeException{
+    public DivException(String str){
+        super(str);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        try{
+            Mul(50,2);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        try{
+            Div(10,5);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static int Mul(int a,int b) throws MulException{
+        int ret = a * b;
+        try{
+            if(ret == 100){
+                throw new MulException("两数相乘不能为100");
+            }
+        }catch (Exception e){
+            throw e;
+        }finally {
+            System.out.println("计算结果:"+ret);
+        }
+        return ret;
+    }
+
+    public static int Div(int a,int b) throws DivException{
+        int ret = a / b;
+        try{
+            if(ret == 2){
+                throw new DivException("两数相除不能为2");
+            }
+        }catch (Exception e){
+            throw e;
+        }finally {
+            System.out.println("计算结果："+ret);
+        }
+        return ret;
+    }
+}
